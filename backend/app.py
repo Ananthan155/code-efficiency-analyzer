@@ -129,13 +129,8 @@ def train_model():
         print(f"Error in train_model: {traceback.format_exc()}")
         return jsonify({'error': str(e)}), 500
 
+import os
+
 if __name__ == '__main__':
-    print("="*60)
-    print("Time Complexity Analyzer - Flask Backend")
-    print("="*60)
-    print(f"Model loaded: {ml_model.is_trained}")
-    print("Starting server on http://localhost:5000")
-    print("Press Ctrl+C to stop")
-    print("="*60)
-    
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
