@@ -16,10 +16,21 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for React frontend
 
 # Initialize components
+print("Initializing CodeParser...")
 code_parser = CodeParser()
+print("CodeParser OK")
+
+print("Initializing ComplexityAnalyzer...")
 complexity_analyzer = ComplexityAnalyzer()
+print("ComplexityAnalyzer OK")
+
+print("Initializing DeepForestModel...")
 ml_model = DeepForestModel()
+print("DeepForestModel OK")
+
+print("Initializing GroqOptimizer...")
 optimizer = GroqOptimizer()
+print("GroqOptimizer OK")
 
 @app.route('/api/health', methods=['GET'])
 def health_check():
