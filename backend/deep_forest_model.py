@@ -226,26 +226,26 @@ class DeepForestModel:
         print(f"✔ Model saved")
 
     def _load_model(self):
-    try:
-        base_dir = os.path.dirname(os.path.abspath(__file__))
-        model_path = os.path.join(base_dir, self.model_path)
+        try:
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+            model_path = os.path.join(base_dir, self.model_path)
 
-        print(f"Looking for model at: {model_path}")
+            print(f"Looking for model at: {model_path}")
 
-        if os.path.exists(model_path):
-            with open(model_path, 'rb') as f:
-                data = pickle.load(f)
+            if os.path.exists(model_path):
+                with open(model_path, 'rb') as f:
+                    data = pickle.load(f)
 
-            self.cascades = data.get('cascades', [])
-            self.complexity_classes = data.get('complexity_classes', self.complexity_classes)
-            self.is_trained = data.get('is_trained', False)
-            self.scaler = data.get('scaler', StandardScaler())
+                self.cascades = data.get('cascades', [])
+                self.complexity_classes = data.get('complexity_classes', self.complexity_classes)
+                self.is_trained = data.get('is_trained', False)
+                self.scaler = data.get('scaler', StandardScaler())
 
-            print("✔ Model loaded successfully")
-        else:
-            print("⚠ Model file not found.")
+                print("✔ Model loaded successfully")
+            else:
+                print("⚠ Model file not found.")
+                self.is_trained = False
+
+        except Exception as e:
+            print(f"⚠ Model loading failed: {e}")
             self.is_trained = False
-
-    except Exception as e:
-        print(f"⚠ Model loading failed: {e}")
-        self.is_trained = False
